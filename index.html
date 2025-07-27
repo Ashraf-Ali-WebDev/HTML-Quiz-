@@ -3,47 +3,176 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>HTML Quiz</title>
-  <link rel="icon" href="https://static.vecteezy.com/system/resources/previews/018/766/186/non_2x/quiz-guess-social-media-icon-in-flat-style-faq-illustration-on-isolated-background-help-button-sign-business-concept-vector.jpg">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
+  <title>HTML Quiz | Login</title>
+  <link rel="icon" href="https://icons.veryicon.com/png/o/miscellaneous/icon-icon-of-ai-intelligent-dispensing/login-user-name-1.png" />
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #e0eafc, #cfdef3);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container-wrapper {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .card {
+      background-color: #ffffff;
+      padding: 2.5rem 2rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 400px;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .form-group p {
+      margin-top: 0.25rem;
+      font-size: 0.875rem;
+    }
+
+    button {
+      border-radius: 25px;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background-color: #343a40;
+      color: #ffffff;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      margin: 0 12px;
+      color: #ffffff;
+      font-size: 1.3rem;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #00aced;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
 <body>
- 
-  <div class="container quiz-container">
 
-    
-    <h2 class="text-center mb-4">HTML Quiz</h2>
-    <div id="timer" class="mb-3 text-end fw-bold text-primary">Time Left: 30:00</div>
-    <form id="quizForm">
-      <div id="questionContainer"></div>
-    </form>
-    <div class="d-flex justify-content-between mt-3">
-      <button type="button" class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()" disabled>Previous</button>
-      <div>
-        <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">Next</button>
-        <button type="button" class="btn btn-success" id="submitBtn" onclick="submitQuiz()" style="display:none">Submit Quiz</button>
-      </div>
+  <div class="container-wrapper">
+    <div class="card text-center">
+      <h4 class="mb-4">Please Fill Details to Start Quiz</h4>
+      <form>
+        <div class="form-group text-center">
+          <label for="username">Name</label>
+          <input type="text" class="form-control" id="username" placeholder="Enter your name..." aria-describedby="namemsg" />
+          <p id="namemsg" class="text-danger" role="alert"></p>
+        </div>
+
+        <div class="form-group text-center">
+          <label for="papercode">Paper Code</label>
+          <input type="text" class="form-control" id="papercode" placeholder="Enter paper code..." aria-describedby="papermsg" />
+          <p id="papermsg" class="text-danger" role="alert"></p>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-block">Start Quiz</button>
+      </form>
     </div>
-    <div id="result" class="result mt-4 text-center"></div>
   </div>
 
   <footer>
-    <p>&copy; 2025 Copyright Reserved | Made by Ashraf Ali</p>
+    <p class="mb-2">&copy; 2025 | Made by Ashraf Ali</p>
     <div>
-      <a href="https://www.instagram.com/ashraf_ali_4444" target="_blank" class="instagram">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="https://www.linkedin.com/in/ashraf-ali-2911b0286/" target="_blank" class="linkedin">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="https://github.com/Ashraf-Ali-WebDev" target="_blank" class="github">
-        <i class="fab fa-github"></i>
-      </a>
+      <a href="https://www.instagram.com/ashraf_ali_4444" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/ashraf-ali-2911b0286/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/Ashraf-Ali-WebDev" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    const nameInput = document.querySelector("#username");
+    const papercodeInput = document.querySelector("#papercode");
+    const papermsg = document.querySelector("#papermsg");
+    const namemsg = document.querySelector("#namemsg");
+    const btn = document.querySelector("button");
+
+    btn.addEventListener("click", () => {
+      const isNameValid = nameValid();
+      const realPaperCode = "SxK_04Ua";
+      const userCode = papercodeInput.value.trim();
+
+      if (!isNameValid) return;
+
+      if (userCode === realPaperCode) {
+        papercodeInput.classList.remove("is-invalid");
+        papercodeInput.classList.add("is-valid");
+        papermsg.innerHTML = "";
+        window.location.href = "htmlquiz.html";
+      } else {
+        papercodeInput.classList.add("is-invalid");
+        papercodeInput.classList.remove("is-valid");
+        papermsg.innerHTML = "Please enter a valid Paper Code.";
+      }
+    });
+
+    function nameValid() {
+      const name = nameInput.value.trim();
+      const nameRegex = /^[a-zA-Z\s]+$/;
+
+      if (name === "") {
+        nameInput.classList.add("is-invalid");
+        nameInput.classList.remove("is-valid");
+        namemsg.innerHTML = "Name can't be empty.";
+        namemsg.classList.remove("text-success");
+        namemsg.classList.add("text-danger");
+        return false;
+      } else if (!nameRegex.test(name)) {
+        nameInput.classList.add("is-invalid");
+        nameInput.classList.remove("is-valid");
+        namemsg.innerHTML = "Name should contain only letters and spaces.";
+        namemsg.classList.remove("text-success");
+        namemsg.classList.add("text-danger");
+        return false;
+      } else {
+        nameInput.classList.remove("is-invalid");
+        nameInput.classList.add("is-valid");
+        namemsg.innerHTML = "Looks good!";
+        namemsg.classList.remove("text-danger");
+        namemsg.classList.add("text-success");
+        return true;
+      }
+    }
+  </script>
+
 </body>
 </html>
